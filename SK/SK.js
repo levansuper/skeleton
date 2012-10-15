@@ -21,7 +21,7 @@ contact: l.basharuli@gmail.com
     SK.global = global;
 
 
-
+    Object.prototype.constructor = function(){};
     /**
      * Copies all the properties of config to the specified object.
      * Note that if recursive merging and cloning without referencing the original objects / arrays is needed, use
@@ -112,25 +112,6 @@ contact: l.basharuli@gmail.com
     SK.apply(SK, {
         /**
          * Proxy to {@link SK.Base#override}. Please refer {@link SK.Base#override} for further details.
-
-    SK.define('My.cool.Class', {
-        sayHi: function() {
-            alert('Hi!');
-        }
-    }
-
-    SK.override(My.cool.Class, {
-        sayHi: function() {
-            alert('About to say...');
-
-            this.callOverridden();
-        }
-    });
-
-    var cool = new My.cool.Class();
-    cool.sayHi(); // alerts 'About to say...'
-                  // alerts 'Hi!'
-
          * Please note that `this.callOverridden()` only works if the class was previously
          * created with {@link SK#define)
          *
@@ -214,15 +195,6 @@ contact: l.basharuli@gmail.com
                 return 'function';
             }
 
-          
-
-        //<debug error>
-        /*SK.Error.raise({
-                sourceClass: 'SK',
-                sourceMethod: 'typeOf',
-                msg: 'Failed to determine the type of the specified value "' + value + '". This is most likely a bug.'
-            });*/
-        //</debug>
         },
 
         /**
@@ -460,6 +432,7 @@ contact: l.basharuli@gmail.com
     SK.cm = new cm();
     
     SK.define = SK.cm.define;
+    SK.create = SK.cm.create;
     
     
     

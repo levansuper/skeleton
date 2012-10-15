@@ -6,8 +6,14 @@ module.exports = function(){
             prt = parent.prototype;
         }
         var F = function(config){
-            this.init.apply(this,config)
+            if(!config){
+                config = {};
+            }
+        
+            this.pre.call(this,config);
+            this.init.call(this)
         };
+        
         for (var i in prt){ 
             if(SK.isFunction(prt[i])){
                 
@@ -46,7 +52,7 @@ module.exports = function(){
             return ret;
         }
     }
-    
+  
     
     //class is created here
     this.define = function(newClassName,config){
@@ -65,8 +71,11 @@ module.exports = function(){
         
         var q = extend(clToExtend,config);
         newNamespace[className] = q;
-                    
-        
+    }
+    
+    this.create = function(className,config){
+       var cl = SK.require(className);         
+       return new cl(config); 
     }
     
 
