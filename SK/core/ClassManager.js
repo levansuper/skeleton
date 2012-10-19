@@ -9,9 +9,12 @@ module.exports = function(){
             if(!config){
                 config = {};
             }
-        
-            this.pre.call(this,config);
-            this.init.call(this)
+            var me = this;
+            (function(){
+                me._constructor.call(me,config);
+            })()
+            
+            ///this.init.call(this)
         };
         
         for (var i in prt){ 
@@ -26,32 +29,41 @@ module.exports = function(){
     }
 
     var extend = function(parent,child){
+        child._constructor = child.constructor;
         var F = clone(parent);
         for (var i in child){           
             if(SK.isFunction(child[i])){
                 var superFunct = function(){}
                 if(SK.isFunction(F.prototype[i])){
+                    
                     superFunct = F.prototype[i];
+                    
                 }
-                F.prototype[i] = callParent(child[i],superFunct);
+                F.prototype[i] = callParent(child[i],superFunct,i);
                 
             }else{
                 F.prototype[i] = child[i];
             }
         }
+        
+        
         return F;
     }
             
     //adding callParent function to every function
-    var callParent = function (fn, superFunct){
-        return function(){            
+    var callParent = function (fn, superFunct,i){
+        
+        return function(){  
+           
             var tmp = this.callParent;
             this.callParent = superFunct || function(){};  
             var ret = fn.apply(this, arguments);       
+            
             this.callParent = tmp;
             return ret;
         }
     }
+
   
     
     //class is created here
@@ -74,8 +86,8 @@ module.exports = function(){
     }
     
     this.create = function(className,config){
-       var cl = SK.require(className);         
-       return new cl(config); 
+        var cl = SK.require(className);         
+        return new cl(config); 
     }
     
 

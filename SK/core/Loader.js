@@ -1,9 +1,9 @@
 module.exports = function(){
     
-    var baseObj = {};
+    var Base = require('./Base');
     var classStore = [];
-    classStore['SK.Base'] = baseObj;
-    SK.Base = baseObj;
+    classStore['SK.Base'] = Base;
+    SK.Base = Base;
     
     
     
@@ -36,3 +36,5 @@ module.exports = function(){
     
     
 }
+
+

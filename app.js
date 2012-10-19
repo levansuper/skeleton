@@ -2,9 +2,14 @@ require('./SK/SK');
 
 
 
+a = SK.create("SK.test.Test",{
+    a:2    
+});
 
-SK.create("SK.test.Test",{
+
+b = SK.create("SK.test.Test",{
     a:1    
 });
+
 
 
