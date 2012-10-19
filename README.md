@@ -6,6 +6,7 @@ Our library will make NodeJS (Javascript) inheritance more easy to handle and wi
 
 
 Using skeleton is very easy;
+
     1)creating a class:
         SK.define("SK.ExampleClass",{
             property1:1,
