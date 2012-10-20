@@ -10,11 +10,9 @@ module.exports = function(){
                 config = {};
             }
             var me = this;
-            (function(){
-                me._constructor.call(me,config);
-            })()
             
-            ///this.init.call(this)
+            me._constructor.apply(me,arguments);
+            me.init.apply(this,arguments)
         };
         
         for (var i in prt){ 
@@ -29,7 +27,10 @@ module.exports = function(){
     }
 
     var extend = function(parent,child){
-        child._constructor = child.constructor;
+        if(child.constructor){
+            child._constructor = child.constructor;
+        }
+        
         var F = clone(parent);
         for (var i in child){           
             if(SK.isFunction(child[i])){
@@ -50,7 +51,7 @@ module.exports = function(){
         return F;
     }
             
-    //adding callParent function to every function
+    //function for adding callParent function to a function
     var callParent = function (fn, superFunct,i){
         
         return function(){  
@@ -63,6 +64,15 @@ module.exports = function(){
             return ret;
         }
     }
+    
+/*
+    function applyMixins(receivingClass, givingClass) {
+        for(methodName in givingClass.prototype) {
+            if(!receivingClass.prototype[methodName]) {
+                receivingClass.prototype[methodName] = givingClass.prototype[methodName];
+            }
+        }
+    }*/
 
   
     
@@ -82,8 +92,12 @@ module.exports = function(){
         var clToExtend = SK.require(config.extend);
         
         var q = extend(clToExtend,config);
+        
         newNamespace[className] = q;
     }
+    
+    
+    
     
     this.create = function(className,config){
         var cl = SK.require(className);         

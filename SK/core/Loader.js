@@ -1,5 +1,5 @@
 module.exports = function(){
-    
+    var me = this;
     var Base = require('./Base');
     var classStore = [];
     classStore['SK.Base'] = Base;
@@ -21,19 +21,36 @@ module.exports = function(){
     
     var createPath = function(className){              
         var classPath = className.split('.');
-        var dir = SK.dirname;
+        classPath[0] = folderPaths[classPath[0]];
+        //var dir = SK.dirname;
         var path = "";
-        path = path + dir + '/..';
+        //path = path + dir + '/..';
         SK.each(classPath,function(p,index){
-            path = path + "/" + p
+            
+            if(index!==0){path = path + "/" };
+            path = path  + p
         })
         return path;
     }
     
     
+    var folderPaths = {
+        'SK':SK.dirname
+    }
     
+    this.addPath = function(name,path){
+        folderPaths[name] = path;
+    }
+    this.deletePath = function(name,path){
+        delete folderPaths[name];
+    }
     
-    
+    this.init = function(config){
+        
+        SK.each(config,function(path,index){
+            this.addPath(index,path);
+        },me)
+    }
     
 }
 

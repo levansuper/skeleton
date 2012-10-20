@@ -1,4 +1,5 @@
-SK.define('App.Test',{ 
+SK.define('App.Test2',{ 
+    extend:'App.Test',
     init:function(){
         this.callParent()
     },

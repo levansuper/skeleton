@@ -1,15 +1,11 @@
 require('./SK/SK');
 
+SK.loader.init({
+    "App": __dirname + "/app"
+})
 
-
-a = SK.create("SK.test.Test",{
+a = SK.create("App.Test2",{
     a:2    
 });
-
-
-b = SK.create("SK.test.Test",{
-    a:1    
-});
-
 
 
