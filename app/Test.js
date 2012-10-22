@@ -1,10 +1,12 @@
 SK.define('App.Test',{ 
+    mixins:{
+        a:'App.mixins.TestMixin'
+    },
     init:function(){
         this.callParent()
     },
     constructor:function(config){
-        console.log(1);
         this.callParent(config);
-        console.log(this.a);
+        
     }
 })

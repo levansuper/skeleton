@@ -4,8 +4,8 @@ SK.define('App.Test2',{
         this.callParent()
     },
     constructor:function(config){
-        console.log(1);
+        this.console(this.a);
         this.callParent(config);
-        console.log(this.a);
+        this.console(this.a);
     }
 })

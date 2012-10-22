@@ -388,7 +388,9 @@ contact: l.basharuli@gmail.com
        
     });
     
-    SK.apply(SK, {            
+    SK.apply(SK, {  
+        
+        //create a namespace
         namespace:function(path){
             var path = path.split('.');
             var currObj = global;
@@ -402,6 +404,7 @@ contact: l.basharuli@gmail.com
                 
             return currObj;
         },
+        //get a namespace 
         getNamespace:function(path,scope){
             var path = path.split('.');
             var currObj = scope || global;

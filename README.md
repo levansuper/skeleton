@@ -40,4 +40,3 @@ Our project is too young to use it for big projects and we don't recommend using
 But you can play with it and tell us your opinion.
 
 We update project almost every day so stay close ;)
-

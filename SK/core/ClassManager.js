@@ -65,15 +65,22 @@ module.exports = function(){
         }
     }
     
-/*
+
     function applyMixins(receivingClass, givingClass) {
-        for(methodName in givingClass.prototype) {
+        for(var methodName in givingClass.prototype) {
             if(!receivingClass.prototype[methodName]) {
                 receivingClass.prototype[methodName] = givingClass.prototype[methodName];
             }
         }
-    }*/
-
+    }
+    
+    function getClass(cl){
+        if(SK.isFunction(cl)){
+            return cl;
+        }else{
+            return SK.require(cl)
+        }        
+    }
   
     
     //class is created here
@@ -93,6 +100,12 @@ module.exports = function(){
         
         var q = extend(clToExtend,config);
         
+        
+        
+        SK.each(q.prototype.mixins,function(mixin){
+            var m = getClass(mixin);
+            applyMixins(q, m);
+        })
         newNamespace[className] = q;
     }
     
