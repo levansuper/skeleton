@@ -40,13 +40,13 @@ Our project is too young to use it for big projects and we don't recommend using
 But you can play with it and tell us your opinion.
 
 - 20.10.2012
-    added dynamic loading utility
+    -added dynamic loading utility
 - 22.10.2012
-    mixins added
+    -mixins added
 - 28.10.2012
-   alternate class names added
-   support for nodejs modules added 
-   onClassExtend function added (a function that will trigger if this class is extended)
+   -alternate class names added
+   -support for nodejs modules added 
+   -onClassExtend function added (a function that will trigger if this class is extended)
 
 
 We update project almost every week so stay close ;)
