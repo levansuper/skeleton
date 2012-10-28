@@ -32,6 +32,13 @@ module.exports = function(){
         }
         
         var F = clone(parent);
+        if(SK.isFunction(parent.prototype.onClassExtend)){
+            F.prototype.onClassExtend(F.prototype,child,F);
+            //delete F.prototype.onClassExtend;
+        }
+        
+        applyExtendClearer(F);
+        
         for (var i in child){           
             if(SK.isFunction(child[i])){
                 var superFunct = function(){}
@@ -67,9 +74,11 @@ module.exports = function(){
     
 
     function applyMixins(receivingClass, givingClass) {
-        for(var methodName in givingClass.prototype) {
+        givingClass = givingClass.prototype || givingClass;
+        for(var methodName in givingClass) {
+           
             if(!receivingClass.prototype[methodName]) {
-                receivingClass.prototype[methodName] = givingClass.prototype[methodName];
+                receivingClass.prototype[methodName] =  givingClass[methodName];
             }
         }
     }
@@ -98,15 +107,12 @@ module.exports = function(){
         
         var clToExtend = SK.require(config.extend);
         
-        var q = extend(clToExtend,config);
+        var cl = extend(clToExtend,config);
         
         
-        
-        SK.each(q.prototype.mixins,function(mixin){
-            var m = getClass(mixin);
-            applyMixins(q, m);
-        })
-        newNamespace[className] = q;
+        doClassManipulations(cl);
+
+        newNamespace[className] = cl;
     }
     
     
@@ -115,6 +121,56 @@ module.exports = function(){
     this.create = function(className,config){
         var cl = SK.require(className);         
         return new cl(config); 
+    }
+    
+    
+    var doClassManipulations = function(cl){
+        SK.each(cl.prototype,function(p,i){
+            doClassManipulation(cl,i);
+        })
+        
+    }
+    
+    var doClassManipulation = function(cl,property){
+        if(SK.isDefined(classManipulations[property])){
+            
+            classManipulations[property](cl);
+        }    
+    }
+    
+    var classManipulations = {
+        mixins:function(cl){
+            SK.each(cl.prototype.mixins,function(mixin,index){
+                var m = getClass(mixin);
+                applyMixins(cl, m);
+            })
+        },
+        alternateClassName:function(cl){
+            
+            var alternate = cl.prototype.alternateClassName;
+            if(SK.isArray(alternate)){
+                SK.each(alternate, function(a){
+                    SK.loader.registerClass(a,cl)
+                })
+            }else{
+                SK.loader.registerClass(alternate,cl)
+            }
+            
+        }
+        
+        
+    }
+    
+    
+    var applyExtendClearer = function(f){
+        SK.each(f,function(p,i){
+            if(extendClearer[i]){
+                f[i] = extendClearer[i];
+            }
+        })
+    }
+    var extendClearer = {
+        'alternateClassName':[]
     }
     
 

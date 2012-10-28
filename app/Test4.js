@@ -1,11 +1,12 @@
-SK.define('App.Test2',{ 
-    extend:'App.Test',
-    a:2,
-    alternateClassName:['s','t'],
+SK.define('App.Test4',{ 
+    extend:'App.Test3',
+    a:5,
     init:function(){
         this.callParent()
     },
     constructor:function(config){
+        this.console(this.a + "      4");
         this.callParent(config);
+        
     }
 })

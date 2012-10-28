@@ -4,8 +4,15 @@ SK.loader.init({
     "App": __dirname + "/app"
 })
 
-a = SK.create("App.Test2",{
-    a:2    
+
+
+SK.create("App.Test4",{
+    
 });
+SK.create("App.Test3",{
+    
+});
+
+
 
 

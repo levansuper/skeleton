@@ -2,23 +2,43 @@ module.exports = function(){
     var me = this;
     var Base = require('./Base');
     var classStore = [];
+    me.classStore = classStore;
     classStore['SK.Base'] = Base;
     SK.Base = Base;
     
     
-    
-    this.require = function(className){
+     /*
+     * loads a class by name of the string
+     * @param name of the class
+     */
+    me.require = function(className){
         var cl = {};
         if(SK.isDefined(classStore[className])){
             cl = classStore[className]
+        }else if(SK.isObject(className) || SK.isFunction(className)){
+            cl = className;
         }else{
             require(createPath(className)) 
             cl = SK.getNamespace(className);
-            classStore[className] = cl;
+            me.registerClass(className, cl);
         }
-        return SK.getNamespace(className);
+        return cl;
     }
     
+    /*
+     * registers a class to classStore
+     * @param name of namespace
+     * @param a class itself
+     */
+    me.registerClass = function(className,cl){
+         classStore[className] = cl;
+    }
+    
+    
+    /*
+     *creates path to a class
+     *@param name of the class
+     */
     var createPath = function(className){              
         var classPath = className.split('.');
         classPath[0] = folderPaths[classPath[0]];
@@ -27,28 +47,39 @@ module.exports = function(){
         //path = path + dir + '/..';
         SK.each(classPath,function(p,index){
             
-            if(index!==0){path = path + "/" };
+            if(index!==0){path = path + "/"};
             path = path  + p
         })
         return path;
     }
     
-    
+
+    /*
+     * paths to folders related to a specefic namespaces
+     */
     var folderPaths = {
         'SK':SK.dirname
     }
     
-    this.addPath = function(name,path){
+    /*
+     * adds a path of a folder to folderPaths
+     * @param name of namespace
+     * @param path to a folder
+     */
+    me.addPath = function(name,path){
         folderPaths[name] = path;
     }
-    this.deletePath = function(name,path){
+        /*
+     * deletes a path of a folder to folderPaths
+     * @param name of namespace 
+     */
+    me.deletePath = function(name){
         delete folderPaths[name];
     }
     
-    this.init = function(config){
-        
+    me.init = function(config){
         SK.each(config,function(path,index){
-            this.addPath(index,path);
+            me.addPath(index,path);
         },me)
     }
     
