@@ -10,9 +10,6 @@ module.exports = function(){
                 config = {};
             }
             var me = this;
-            
-                
-         
             me._constructor.apply(me,arguments);
             me.init.apply(this,arguments)
         };

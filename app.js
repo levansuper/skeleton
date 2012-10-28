@@ -6,10 +6,13 @@ SK.loader.init({
 
 
 
-a = SK.create("App.Test4",{
-    
+a = SK.create("SK.server.Http",{
+    port:8000
 });
-a.aa()
+b = SK.create("SK.server.Http",{
+    port:8001
+});
+
 
 
 
