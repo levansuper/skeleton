@@ -1,11 +1,15 @@
 SK.define('App.Test2',{ 
-    extend:'App.Test',
+    extend:'App.Test1',
     a:2,
     alternateClassName:['s','t'],
     init:function(){
         this.callParent()
     },
     constructor:function(config){
+        this.console("1113");
         this.callParent(config);
+    },
+    vano:function(){
+        console.log(111);
     }
 })

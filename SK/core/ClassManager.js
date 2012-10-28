@@ -11,6 +11,8 @@ module.exports = function(){
             }
             var me = this;
             
+                
+         
             me._constructor.apply(me,arguments);
             me.init.apply(this,arguments)
         };
@@ -27,19 +29,26 @@ module.exports = function(){
     }
 
     var extend = function(parent,child){
-        if(child.constructor){
-            child._constructor = child.constructor;
-        }
         
+        if(child.constructor == {}.constructor ){
+            child.constructor =  function(){
+                this.callParent.apply(this,arguments)
+            }
+        }
+        child._constructor = child.constructor;
+                
         var F = clone(parent);
-        if(SK.isFunction(parent.prototype.onClassExtend)){
+        
+        
+        if(false && SK.isFunction(parent.prototype.onClassExtend)){
             F.prototype.onClassExtend(F.prototype,child,F);
-            //delete F.prototype.onClassExtend;
+            delete F.prototype.onClassExtend;
         }
         
         applyExtendClearer(F);
         
-        for (var i in child){           
+        for (var i in child){   
+            
             if(SK.isFunction(child[i])){
                 var superFunct = function(){}
                 if(SK.isFunction(F.prototype[i])){
@@ -51,6 +60,7 @@ module.exports = function(){
                 
             }else{
                 F.prototype[i] = child[i];
+                
             }
         }
         
@@ -62,7 +72,6 @@ module.exports = function(){
     var callParent = function (fn, superFunct,i){
         
         return function(){  
-           
             var tmp = this.callParent;
             this.callParent = superFunct || function(){};  
             var ret = fn.apply(this, arguments);       
@@ -171,7 +180,8 @@ module.exports = function(){
         })
     }
     var extendClearer = {
-        'alternateClassName':[]
+        'alternateClassName':[],
+        'extends':undefined
     }
     
 

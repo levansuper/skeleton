@@ -1,12 +1,8 @@
 SK.define('App.Test4',{ 
     extend:'App.Test3',
-    a:5,
+    a:4,
     init:function(){
+        this.vano()
         this.callParent()
-    },
-    constructor:function(config){
-        this.console(this.a + "      4");
-        this.callParent(config);
-        
     }
 })
