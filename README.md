@@ -39,7 +39,7 @@ Using skeleton is very easy;
 Our project is too young to use it for big projects and we don't recommend using it for a serious project.
 But you can play with it and tell us your opinion.
 
-- 20.10.2012
+- 20.10.2012 
 - added dynamic loading utility
 - 22.10.2012
 - mixins added
