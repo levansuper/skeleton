@@ -6,13 +6,13 @@ SK.loader.init({
 
 
 
-SK.create("App.Test4",{
-    
-});
-SK.create("App.Test3",{
-    
-});
 
 
+SK.define("aaa",{
+	constructor:function(){
+		console.log(111);
+	}
+})
 
 
+SK.create("aaa");

@@ -7,11 +7,12 @@ module.exports = function(){
     SK.Base = Base;
     
     
-     /*
+    /*
      * loads a class by name of the string
      * @param name of the class
      */
     me.require = function(className){
+	
         var cl = {};
         if(SK.isDefined(classStore[className])){
             cl = classStore[className]
@@ -31,7 +32,7 @@ module.exports = function(){
      * @param a class itself
      */
     me.registerClass = function(className,cl){
-         classStore[className] = cl;
+        classStore[className] = cl;
     }
     
     
@@ -47,7 +48,9 @@ module.exports = function(){
         //path = path + dir + '/..';
         SK.each(classPath,function(p,index){
             
-            if(index!==0){path = path + "/"};
+            if(index!==0){
+                path = path + "/"
+                };
             path = path  + p
         })
         return path;
@@ -69,7 +72,7 @@ module.exports = function(){
     me.addPath = function(name,path){
         folderPaths[name] = path;
     }
-        /*
+    /*
      * deletes a path of a folder to folderPaths
      * @param name of namespace 
      */
@@ -84,5 +87,4 @@ module.exports = function(){
     }
     
 }
-
 

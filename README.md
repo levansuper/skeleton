@@ -1,7 +1,7 @@
 Skeleton
 ========
 
-Skeleton is NodeJS library for creating OOP like applications.
+Skeletonode is NodeJS library for creating OOP like applications.
 Our library will make NodeJS (Javascript) inheritance more easy to handle and will help you to correctly organize your code;
 
 

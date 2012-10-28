@@ -113,6 +113,7 @@ module.exports = function(){
         doClassManipulations(cl);
 
         newNamespace[className] = cl;
+        SK.loader.registerClass(className,cl)
     }
     
     
