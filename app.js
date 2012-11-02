@@ -6,7 +6,7 @@ SK.loader.init({
 
 
 
-a = SK.create("App.Test4",{
+a = SK.create("App.Http",{
     
 });
 

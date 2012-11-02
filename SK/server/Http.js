@@ -1,17 +1,35 @@
 SK.define('SK.server.Http',{ 
     mixins:{
-        a:require("http")
+        'http':require('http'),
+        'url':require('url')
     },
     port:8000,
-
+    server:null,
+    
+    constructor:function(config){
+        var me = this;
+        me.mainFunction = config.mainFunction || me.mainFunction;        
+        me.server = this.createServer(function(){me.mainFunction.apply(me,arguments)})
+        me.callParent(config);
+    },
     init:function(){
-        /*this.createServer(function(req,res){
-            res.end("hello world");
-        }).listen(this.port);
-        console.log("started on port "+ this.port)*/
-        console.log(this.port)
+        this.server.listen(this.port);
         this.callParent()
+    },
+    gets:{
+        '404':function(req,res){
+            res.end('404 page not found');            
+        }
+    },
+    
+    mainFunction:function(req,res){
+        if(this.gets[req.url]){
+            this.gets[req.url](req,res)
+        }else{
+            this.gets[404](req,res)
+        }
     }
+    
     
    
 })
