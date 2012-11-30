@@ -1,14 +1,26 @@
 {
-    "name": "skeletonode",
-    "version": "0.1.3",
-    "description": "Node.js library for constructing applications of OOP type ",
-    "main": "SK.js",
-    "bin": { "SK": "SK.js" },
-    "author": "Levan Basharuli",
-    "keywords": ["structure", "nodejs", "application"],
-    "repository" : {
-        "type": "git",
-        "url": "https://github.com/levansuper/skeleton.git"
-    },
-    "engines": { "node": "*" }
+  "name": "skeletonode",
+  "version": "0.1.4",
+  "description": "Node.js library for constructing applications of OOP type ",
+  "main": "SK.js",
+  "bin": {
+    "SK": "SK.js"
+  },
+  "author": "Levan Basharuli",
+  "keywords": [
+    "structure",
+    "nodejs",
+    "application"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/levansuper/skeleton.git"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "BSD"
 }
