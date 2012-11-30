@@ -6,7 +6,7 @@ SK.define('App.Http',{
             res.end('test');
         },
         'test':function(req,res){            
-            res.end('test');            
+            res.end('test111');            
         },
         '404':function(req,res){
             res.end('404 page not found');            

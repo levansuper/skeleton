@@ -1,5 +1,4 @@
 require('./SK/SK');
-
 SK.loader.init({
     "App": __dirname + "/app"
 })
@@ -9,8 +8,5 @@ SK.loader.init({
 a = SK.create("App.Http",{
     
 });
-
-
-
 
 

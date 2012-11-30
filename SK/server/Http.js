@@ -1,7 +1,7 @@
 SK.define('SK.server.Http',{ 
-    mixins:{
-        'http':require('http'),
-        'url':require('url')
+    externalModules:{
+        'http':'http',
+        'url':'url'
     },
     port:8000,
     server:null,
@@ -9,7 +9,7 @@ SK.define('SK.server.Http',{
     constructor:function(config){
         var me = this;
         me.mainFunction = config.mainFunction || me.mainFunction;        
-        me.server = this.createServer(function(){me.mainFunction.apply(me,arguments)})
+        me.server = me.createServer(function(){me.mainFunction.apply(me,arguments)})
         me.callParent(config);
     },
     init:function(){
