@@ -171,6 +171,17 @@ module.exports = function(){
                 SK.loader.registerClass(alternate,cl)
             }
             
+        },
+        statics:function(cl){
+            SK.each(cl.prototype.statics,function(el,index){
+                cl[index] = el;
+            })
+            
+        },
+        uses:function(cl){
+            SK.each(cl.prototype.uses,function(el,index){
+                SK.require(el)
+            })
         }
         
         
