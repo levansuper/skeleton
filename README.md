@@ -38,6 +38,33 @@ Using skeleton is very easy;
             property4:{objProperty1:"string"} ,
             property5:function(){}
         }
+    
+    ----------------------------------------------
+    Dynamic loading is enabled now
+    SK.loader.init({
+        "App": __dirname 
+    })
+    pass Application namespace and location to init method and is will enable the loader
+    you create all the application classes under that namespace
+    see "app" folder for more details
+    
+    ----------------------------------------------
+    static methods and variables
+    SK.define("Test",{
+    statics:{
+        methodA:function(a){
+            return a+2;
+        },
+        variableB:{
+            a:1,
+            b:2
+        }
+    }
+    })
+    
+    we can simply call this methods 
+    var testNumber = Test.methodA(5);
+    and testnumber will be 7;
 
 to install skeletonode u can just "npm install skeletonode"    
 Our project is too young to use it for big projects and we don't recommend using it for a serious project.
@@ -52,5 +79,9 @@ But you can play with it and tell us your opinion.
 - support for nodejs modules added 
 - onClassExtend function added (a function that will trigger if this class is extended)
 - we're on npm :)
+- 15.01.2013 
+- dynamic loading enabled
+- 12.03.2013
+- static methods added
 
 We update project almost every week so stay close ;)
