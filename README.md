@@ -79,8 +79,6 @@ But you can play with it and tell us your opinion.
 - support for nodejs modules added 
 - onClassExtend function added (a function that will trigger if this class is extended)
 - we're on npm :)
-- 15.01.2013 
-- dynamic loading enabled
 - 12.03.2013
 - static methods added
 
