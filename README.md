@@ -14,23 +14,24 @@ Using skeleton is very easy;
         SK.define("ExampleClass",{
             property1:1,
             property2:"string",
-            property3:fucntion(){}
+            property3:function(){},
             property4:{objProperty1:"string"}
-        })
+         })
     3)extending a class:
         SK.define("ExtendedExample",{
-            extends:'ExampleClass',
+            extend:'ExampleClass',
             property1:2,
-            property3:"string".
+            property3:"string",
             property5:function(){}
         })
 
     4)initializing an object:
-        SK.create("ExtendedExample",{
+        var obj = SK.create("ExtendedExample",{
             property1:4
         })
 
-    The final object will be: 
+    The final object will be console.log(obj): 
+        
         {
             property1:4,
             property2:"string",
