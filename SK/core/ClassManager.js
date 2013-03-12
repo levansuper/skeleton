@@ -148,7 +148,7 @@ module.exports = function(){
     var classManipulations = {
         externalModules:function(cl){
             SK.each(cl.prototype.externalModules,function(em,index){
-                if(SK.isString){
+                if(SK.isString(em)){
                     em = require(em);
                 };
                 applyMixins(cl, em);
