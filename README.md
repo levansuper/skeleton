@@ -84,4 +84,3 @@ But you can play with it and tell us your opinion.
 - 12.03.2013
 - static methods added
 
-We update project almost every week so stay close ;)
