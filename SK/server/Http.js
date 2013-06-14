@@ -13,8 +13,9 @@ SK.define('SK.server.Http',{
         me.callParent(config);
     },
     init:function(){
-        this.server.listen(this.port);
-        this.callParent()
+        var me = this;
+        me.server.listen(me.port);
+        me.callParent()
     },
     gets:{
         '404':function(req,res){
