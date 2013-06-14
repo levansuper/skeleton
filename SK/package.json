@@ -1,6 +1,6 @@
 {
   "name": "skeletonode",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Node.js library for constructing applications of OOP type ",
   "main": "SK.js",
   "bin": {
