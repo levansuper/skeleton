@@ -66,6 +66,35 @@ Using skeleton is very easy;
     we can simply call this methods 
     var testNumber = Test.methodA(5);
     and testnumber will be 7;
+    
+    ----------------------------------------------
+    object.on - registers an event. 
+        parameters:
+        @string - name of the event
+        @function - functions to be called
+        @object - scope
+    object.fireEvent - fires all the registered events.
+        parameters:
+        @string - name of the event
+        @any type - any number ot parameters
+        
+    SK.define("SampleClass",{
+    a:function(){
+            this.fireEvent('sampleevent',1,2,3);
+        }
+    });
+    s = SK.create('SampleClass',{});
+    s.on('sampleevent',function(a,b,c){
+        console.log(a,b,c,1)    
+    })
+    s.on('sampleevent',function(a,b,c){
+        a++;
+        b++;
+        c++;
+        console.log(a,b,c,2)    
+    })
+    
+    s.a();
 
 to install skeletonode u can just "npm install skeletonode"    
 Our project is too young to use it for big projects and we don't recommend using it for a serious project.
@@ -82,4 +111,6 @@ But you can play with it and tell us your opinion.
 - we're on npm :)
 - 12.03.2013
 - static methods added
+- 14.06.2013
+- event management added
 
