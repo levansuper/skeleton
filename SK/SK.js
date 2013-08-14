@@ -21,7 +21,6 @@ contact: l.basharuli@gmail.com
     SK.global = global;
 
     
-    Object.prototype.constructor = function(){};
     /**
      * Copies all the properties of config to the specified object.
      * Note that if recursive merging and cloning without referencing the original objects / arrays is needed, use

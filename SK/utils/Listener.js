@@ -1,5 +1,4 @@
 SK.define('SK.utils.Listener',{
-    eventPool:{},
     addEvent:function(listener){
         var me = this;
         me.addListenerEventPool(listener);
@@ -10,6 +9,7 @@ SK.define('SK.utils.Listener',{
     addListenerEventPool:function(listener){
         var me = this;
         var listeners = null;
+        me.eventPool = me.eventPool || {};
         if(me.eventPool[listener.name]){
             
             listeners = me.eventPool[listener.name];
@@ -22,6 +22,7 @@ SK.define('SK.utils.Listener',{
     },
     getListenerFromEventPool:function(eventName){
         var me = this;
+        me.eventPool = me.eventPool || {};
         return me.eventPool[eventName];
     },
     on:function(name,fn,scope){

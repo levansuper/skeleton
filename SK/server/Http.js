@@ -8,13 +8,14 @@ SK.define('SK.server.Http',{
     
     constructor:function(config){
         var me = this;
-        me.mainFunction = config.mainFunction || me.mainFunction;        
         me.server = me.createServer(function(){me.mainFunction.apply(me,arguments)})
         me.callParent(config);
     },
     init:function(){
         var me = this;
-        me.server.listen(me.port);
+        me.server.listen(me.port,function(err){
+            me.fireEvent('serverstart',err);
+        });
         me.callParent()
     },
     gets:{
@@ -24,11 +25,8 @@ SK.define('SK.server.Http',{
     },
     
     mainFunction:function(req,res){
-        if(this.gets[req.url]){
-            this.gets[req.url](req,res)
-        }else{
-            this.gets[404](req,res)
-        }
+        var me = this;
+        me.fireEvent('request',req,res);
     }
     
     

@@ -48,7 +48,7 @@ module.exports = function(){
         //path = path + dir + '/..';
         SK.each(classPath,function(p,index){
             
-            if(index!==0){
+            if(index!=0){
                 path = path + "/"
                 };
             path = path  + p
